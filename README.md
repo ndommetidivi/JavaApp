@@ -17,12 +17,17 @@ Install Java
 sudo apt install openjdk-11-jdk -y
 java -version
 openjdk version "11.0.11"
+
 Install Apache Tomcat
+
 Download Tomcat
 wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.91/bin/apache-tomcat-9.0.91.zip
 unzip apache-tomcat-9.0.91.zip
 mv apache-tomcat-9.0.91.zip /opt/tomcat
 sudo chown -R $USER:$USER /opt/tomcat
+
+Write service file for tomcat
+
 sudo nano /etc/systemd/system/tomcat.service
 [Unit]
 Description=Apache Tomcat Web Application Container
@@ -47,5 +52,8 @@ sudo systemctl daemon-reload
 sudo systemctl start tomcat
 sudo systemctl enable tomcat
 
+Copy Your WAR File to Tomcat Webapps Directory
 cp /path/to/your/login.war /opt/tomcat/webapps/
+
+Access Your Application
 http://<your-server-ip>:8080/login
