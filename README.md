@@ -6,11 +6,14 @@ STEPS TO INSTALL JAVA
 ``` 
    ```bash
    sudo apt-get install openjdk-8-jdk -y
+
 ``` 
 Command to check the Java version
    ```bash
   java -version
 ``` 
+![Screenshot 2024-07-17 173830](https://github.com/user-attachments/assets/8fd010a8-f7a6-4157-88d0-3d80793df1c6)
+
 To set the environment path 
    ```bash
    nano ~/.bashrc
@@ -23,7 +26,34 @@ export PATH=$JAVA_HOME/bin:$PATH
    ```bash
     source ~/.bashrc
 ``` 
+steps to install maven 
+   ```bash
+  wget https://dlcdn.apache.org/maven/maven-3/3.9.8/binaries/apache-maven-3.9.8-bin.zip
+``` 
+   ```bash
+  unzip apache-maven-3.9.8-bin.zip
+``` 
+```bash
+ls
+``` 
+```bash
+mv apache-maven-3.9.8-bin.zip /opt/maven 
+``` 
+```bash
+  nano ~/.bashrc  
+``` 
+```bash
+    export M2_HOME=/opt/maven
+export PATH=$M2_HOME/bin:$PATH
+``` 
 
+
+```bash
+source ~/.bashrc
+``` 
+```bash
+mvn -version
+``` 
 Steps to deploy Java Application : 
 
   Enter into the directory opt by using the command 
@@ -40,12 +70,13 @@ Check in which branch the code was present.
 Click on code and copy the URL of the master branch.
 
  ```bash
-  git clone -b master https://github.com/kvurukuti/JavaApp.git
+git clone -b master https://github.com/kvurukuti/JavaApp.git
 ```                      
-                    
+ ![Screenshot 2024-07-17 185627](https://github.com/user-attachments/assets/50004c65-33b3-4bfa-901e-e36f410fda7a)
+Now the project will be cloned into your directory /opt and enter the command 
 
+![Screenshot 2024-07-17 190512](https://github.com/user-attachments/assets/4199f7ed-8c95-48e5-bdac-3fb670a9c8fa)
 
-  Now the project will be cloned into your directory /opt and enter the command 
 
   ```bash
    ls
@@ -66,6 +97,8 @@ cd /opt/JavaApp
 ```bash
 mvn clean
 ```
+![Screenshot 2024-07-17 190521](https://github.com/user-attachments/assets/8165a43b-2b56-4279-b38d-d22794b087dc)
+
 
 
 After the build was success enter the command maven install as given below : 
@@ -74,6 +107,9 @@ After the build was success enter the command maven install as given below :
    ```bash
   mvn install
 ```
+![Screenshot 2024-07-17 190626](https://github.com/user-attachments/assets/441d6b24-1663-40b0-868c-158127a89499)
+
+
 
 
   It it was done you will get build success shown as below : 
@@ -127,6 +163,11 @@ Check your application in your browser by giving the ip address with port number
                                     
 You will get the page as shown below : 
                  
+
+                 
+
+![Screenshot 2024-07-17 190713](https://github.com/user-attachments/assets/835b46b6-4415-4953-8951-001e934700ed)
+
 
 
 
