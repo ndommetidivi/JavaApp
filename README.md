@@ -1,59 +1,146 @@
-# Java Application Deployment on Tomcat Server
+Java Application Deployment 
 
-This README file provides instructions for installing Java and deploying a Java application on an Apache Tomcat server.
+STEPS TO INSTALL JAVA
+   ```bash
+  sudo apt-get update
+``` 
+   ```bash
+   sudo apt-get install openjdk-8-jdk -y
+``` 
+Command to check the Java version
+   ```bash
+  java -version
+``` 
+To set the environment path 
+   ```bash
+   nano ~/.bashrc
+``` 
+   ```bash
+   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+  
+``` 
+   ```bash
+    source ~/.bashrc
+``` 
 
-## Prerequisites
+Steps to deploy Java Application : 
 
-- An Ubuntu server
-- sudo privileges
+  Enter into the directory opt by using the command 
+ 
+```bash
+cd /opt
+```
+  Clone the java project from the github it looks as  below : 
 
-## Step 1: Install Java
+ 
 
-### 1.1 Update the Package Index
+Check in which branch the code was present.
+
+Click on code and copy the URL of the master branch.
+
+ ```bash
+  git clone -b master https://github.com/kvurukuti/JavaApp.git
+```                      
+                    
+
+
+  Now the project will be cloned into your directory /opt and enter the command 
+
+  ```bash
+   ls
+```
+
+                    
+Here you can see the cloned project named JavaApp.
+
+Now enter into the directory where your project was located
 
 ```bash
-sudo apt update
-Install Java
-sudo apt install openjdk-11-jdk -y
-java -version
-openjdk version "11.0.11"
+cd /opt/JavaApp
+```
 
-Install Apache Tomcat
+                             
+ Now enter the command  maven clean as given below :  
 
-Download Tomcat
-wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.91/bin/apache-tomcat-9.0.91.zip
-unzip apache-tomcat-9.0.91.zip
-mv apache-tomcat-9.0.91.zip /opt/tomcat
-sudo chown -R $USER:$USER /opt/tomcat
+```bash
+mvn clean
+```
 
-Write service file for tomcat
 
-sudo nano /etc/systemd/system/tomcat.service
-[Unit]
-Description=Apache Tomcat Web Application Container
-After=network.target
+After the build was success enter the command maven install as given below : 
 
-[Service]
-Type=forking
 
-ExecStart=/opt/tomcat/bin/startup.sh
-ExecStop=/opt/tomcat/bin/shutdown.sh
+   ```bash
+  mvn install
+```
 
-User=tomcat
-Group=tomcat
-UMask=0007
-RestartSec=10
-Restart=always
 
-[Install]
-WantedBy=multi-user.target
+  It it was done you will get build success shown as below : 
 
-sudo systemctl daemon-reload
-sudo systemctl start tomcat
-sudo systemctl enable tomcat
+ 
 
-Copy Your WAR File to Tomcat Webapps Directory
-cp /path/to/your/login.war /opt/tomcat/webapps/
+Here you will get the target file.
 
-Access Your Application
-http://<your-server-ip>:8080/login
+Enter into the path where your target file was located.
+
+
+     
+```bash
+cd /target
+```
+ 
+Enter the command   ls      
+     
+ Enter the command pwd to know the path as shown below        
+
+     pwd 
+
+
+
+Now enter into the webapps directory .
+
+
+  
+
+  
+     cd /opt/tomcat/webapps
+
+Enter the command ls.
+
+Now  copy the login.war file into webapps
+
+And enter the path where previously you got by using the pwd command.     
+
+     
+     cp /opt/JavaApp/tomcat/login.war /opt/tomcat/webapps         
+  Enter the command ls to check whether the file is copied or not.
+       
+  Here you should enter into the bin directory and start the application.
+
+    cd /opt/tomcat/bin/startup.sh
+   
+
+ Now your application will start successfully.
+
+Check your application in your browser by giving the ip address with port number 8080.
+                                    
+You will get the page as shown below : 
+                 
+
+
+
+
+
+
+
+
+
+
+                                                                                 
+
+
+
+                                                                                    
+
+
