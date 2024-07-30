@@ -86,8 +86,8 @@ To manage Tomcat as a service, you can create a systemd service file
 ```bash
   sudo nano /etc/systemd/system/tomcat.service  
 ``` 
-
-[Unit]
+```bash
+  [Unit]
 Description=Apache Tomcat Web Application Container
 After=network.target
 
@@ -110,6 +110,8 @@ sudo systemctl daemon-reload
 Start and enable the Tomcat service:
 sudo systemctl start tomcat
 sudo systemctl enable tomcat
+``` 
+
 
 
 Steps to deploy Java Application : 
