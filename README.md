@@ -54,6 +54,64 @@ source ~/.bashrc
 ```bash
 mvn -version
 ``` 
+Steps to install tomcat 
+```bash
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9.0.89.tar.gz 
+``` 
+Extract Tomcat:
+
+Extract the downloaded archive to a directory where you want to install Tomcat. For this example, we'll use /opt/tomcat.
+```bash
+  sudo mkdir /opt/tomcat  
+``` 
+```bash
+  sudo tar xzvf apache-tomcat-9.0.89.tar.gz   
+``` 
+Configure Permissions:
+Set the appropriate permissions for the Tomcat directory.
+```bash
+ sudo chown -R $USER:$USER /opt/tomcat
+sudo chmod +x /opt/tomcat/bin/*.sh    
+``` 
+Start Tomcat:
+You can start Tomcat using the startup script provided in the bin directory.
+```bash
+/opt/tomcat/bin/startup.sh
+``` 
+Access Tomcat:
+Tomcat should now be running. You can access the Tomcat server by navigating to
+ http://your-server-ip:8080 in your web browser.
+Set Up Tomcat as a Service:
+To manage Tomcat as a service, you can create a systemd service file
+```bash
+  sudo nano /etc/systemd/system/tomcat.service  
+``` 
+
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+User=tomcat
+Group=tomcat
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Reload the systemd daemon to apply the changes:
+sudo systemctl daemon-reload
+Start and enable the Tomcat service:
+sudo systemctl start tomcat
+sudo systemctl enable tomcat
+
+
 Steps to deploy Java Application : 
 
   Enter into the directory opt by using the command 
