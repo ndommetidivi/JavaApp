@@ -20,7 +20,7 @@ padding: 1em;
 
 <body bgcolor="white">
 
-<header><h2><b> MIRACLE SERVICESBAY SYSTEMS </b></h2></header>
+<header><h2><b> MiRACLE SERVICESBAY SYSTEMS </b></h2></header>
 
 <center>
 
